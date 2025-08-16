@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Insurance Fraud Detection</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #74ebd5, #ACB6E5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        form {
+            background-color: #ffffffcc;
+            padding: 30px 40px;
+            border-radius: 15px;
+            box-shadow: 0px 10px 25px rgba(0,0,0,0.2);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 25px;
+        }
+
+        label {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        input[type="number"], select {
+            width: 100%;
+            padding: 10px 12px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        input[type="number"]:focus, select:focus {
+            outline: none;
+            border-color: #74ebd5;
+            box-shadow: 0 0 5px rgba(116, 235, 213, 0.5);
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background: #74ebd5;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background: #ACB6E5;
+        }
+
+        h3 {
+            text-align: center;
+            margin-top: 20px;
+            color: #333;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <form action="/predict" method="post">
+        <h2>Insurance Fraud Detection</h2>
+
+        <label>Months as Customer:</label>
+        <input type="number" step="1" name="MonthsAsCustomer" required><br>
+
+        <label>Policy Deductable:</label>
+        <input type="number" step="0.01" name="PolicyDeductable" required><br>
+
+        <label>Umbrella Limit:</label>
+        <input type="number" step="0.01" name="UmbrellaLimit" required><br>
+
+        <label>Injury Claim:</label>
+        <input type="number" step="0.01" name="InjuryClaim" required><br>
+
+        <label>Property Claim:</label>
+        <input type="number" step="0.01" name="PropertyClaim" required><br>
+
+        <label>Vehicle Claim:</label>
+        <input type="number" step="0.01" name="VehicleClaim" required><br>
+
+        <label>Bodily Injuries:</label>
+        <input type="number" step="1" name="BodilyInjuries" required><br>
+
+        <label>Witnesses:</label>
+        <input type="number" step="1" name="Witnesses" required><br>
+
+        <label>Capital Gains:</label>
+        <input type="number" step="0.01" name="CapitalGains" required><br>
+
+        <label>Capital Loss:</label>
+        <input type="number" step="0.01" name="CapitalLoss" required><br>
+
+        <label>Incident Hour Of The Day:</label>
+        <input type="number" step="1" name="IncidentHourOfTheDay" required><br>
+
+        <label>Collision Type:</label>
+        <select name="CollisionType">
+            <option value="Rear Collision">Rear Collision</option>
+            <option value="Side Collision">Side Collision</option>
+            <option value="Front Collision">Front Collision</option>
+            <option value="Other Collision">Other Collision</option>
+        </select><br>
+
+        <label>Authorities Contacted:</label>
+        <select name="AuthoritiesContacted">
+            <option value="Police">Police</option>
+            <option value="Fire">Fire</option>
+            <option value="Other">Other</option>
+        </select><br>
+
+        <input type="submit" value="Predict">
+
+        {% if prediction_text %}
+            <h3>{{ prediction_text }}</h3>
+        {% endif %}
+    </form>
+</body>
+</html>
+
